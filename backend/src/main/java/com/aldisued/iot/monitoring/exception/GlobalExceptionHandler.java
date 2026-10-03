@@ -2,7 +2,6 @@ package com.aldisued.iot.monitoring.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -46,7 +45,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     log.warn("Validation failed: {}", ex.getMessage());
 
     String errors = ex.getBindingResult().getFieldErrors().stream()
-        .map(DefaultMessageSourceResolvable::getDefaultMessage)
+        .map(e -> e.getField() + ": " + e.getDefaultMessage())
         .collect(Collectors.joining(", "));
 
     return new ResponseEntity<>(getErrorsMap(errors, HttpStatus.BAD_REQUEST), headers, HttpStatus.BAD_REQUEST);
