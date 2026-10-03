@@ -6,7 +6,12 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record SensorReadingDto(
-    @NotNull UUID sensorId,
-    @NotNull Double value,
-    @NotNull LocalDateTime timestamp
+    @NotNull(message = "Sensor ID is required!")
+    UUID sensorId,
+
+    @NotNull(message = "Sensor reading value is required!")
+    Double value,
+
+    @NotNull(message = "Sensor reading timestamp is required!")
+    LocalDateTime timestamp
 ) {}

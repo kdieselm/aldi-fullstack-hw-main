@@ -7,6 +7,11 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface AlertMapper {
+
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "sensor", ignore = true)
+  Alert toEntity(AlertDto alertDto);
+
   @Mapping(target = "sensorId", source = "sensor.id")
   AlertDto toDto(Alert alert);
 }
