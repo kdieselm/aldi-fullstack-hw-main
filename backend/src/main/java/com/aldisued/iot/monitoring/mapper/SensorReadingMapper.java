@@ -7,6 +7,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface SensorReadingMapper {
+
   @Mapping(target = "id", ignore = true)
   @Mapping(target = "sensor", ignore = true)
   SensorReading toEntity(SensorReadingDto sensorReadingDto);
