@@ -21,14 +21,15 @@ public class MeasurementService {
 
   public List<Double> getMeasurementValuesBySensorType(SensorType sensorType, LocalDateTime from,
       LocalDateTime to) {
-    // TODO: Task 8
-    return List.of();
+    log.debug("getMeasurementValuesBySensorType > sensorType: {}, from: {}, to: {}", sensorType, from, to);
+
+    return sensorReadingRepository.findValuesBySensorTypeInPeriodOrderByTimestamp(sensorType, from, to);
   }
 
   public Optional<Double> getAverageTemperature(LocalDateTime from, LocalDateTime to) {
     log.debug("getAverageTemperature > from: {}, to: {}", from, to);
 
-    return sensorReadingRepository.findAverageValueBySensorTypeAndTimestampBetween(SensorType.TEMPERATURE, from, to);
+    return sensorReadingRepository.findAverageValueBySensorTypeInPeriod(SensorType.TEMPERATURE, from, to);
   }
 
 }
