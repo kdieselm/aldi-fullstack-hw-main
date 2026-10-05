@@ -1,6 +1,7 @@
 package com.aldisued.iot.monitoring.controller;
 
 import com.aldisued.iot.monitoring.dto.AlertDto;
+import com.aldisued.iot.monitoring.dto.AlertResponseDto;
 import com.aldisued.iot.monitoring.mapper.AlertMapper;
 import com.aldisued.iot.monitoring.service.AlertService;
 import jakarta.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,6 +25,11 @@ public class AlertController {
   public AlertController(AlertService alertService, AlertMapper alertMapper) {
     this.alertService = alertService;
     this.alertMapper = alertMapper;
+  }
+
+  @GetMapping
+  public List<AlertResponseDto> getAllAlerts() {
+    return alertService.findAllAlerts();
   }
 
   @PostMapping

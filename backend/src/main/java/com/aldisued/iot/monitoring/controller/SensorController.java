@@ -1,13 +1,17 @@
 package com.aldisued.iot.monitoring.controller;
 
 import com.aldisued.iot.monitoring.dto.SensorDto;
+import com.aldisued.iot.monitoring.dto.SensorResponseDto;
 import com.aldisued.iot.monitoring.entity.Sensor;
 import com.aldisued.iot.monitoring.service.SensorService;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/sensors")
@@ -17,6 +21,11 @@ public class SensorController {
 
   public SensorController(SensorService sensorService) {
     this.sensorService = sensorService;
+  }
+
+  @GetMapping
+  public List<SensorResponseDto> getAllSensors() {
+    return sensorService.findAllSensors();
   }
 
   @PostMapping

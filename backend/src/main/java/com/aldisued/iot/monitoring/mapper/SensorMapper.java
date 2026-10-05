@@ -1,6 +1,7 @@
 package com.aldisued.iot.monitoring.mapper;
 
 import com.aldisued.iot.monitoring.dto.SensorDto;
+import com.aldisued.iot.monitoring.dto.SensorResponseDto;
 import com.aldisued.iot.monitoring.entity.Sensor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,4 +13,6 @@ public interface SensorMapper {
   @Mapping(target = "alerts", ignore = true)
   @Mapping(target = "sensorReadings", ignore = true)
   Sensor toEntity(SensorDto sensorDto);
+
+  SensorResponseDto toResponseDto(Sensor sensor);
 }

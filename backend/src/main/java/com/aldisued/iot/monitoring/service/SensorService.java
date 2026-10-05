@@ -1,12 +1,15 @@
 package com.aldisued.iot.monitoring.service;
 
 import com.aldisued.iot.monitoring.dto.SensorDto;
+import com.aldisued.iot.monitoring.dto.SensorResponseDto;
 import com.aldisued.iot.monitoring.entity.Sensor;
 import com.aldisued.iot.monitoring.exception.SensorAlreadyExistsException;
 import com.aldisued.iot.monitoring.mapper.SensorMapper;
 import com.aldisued.iot.monitoring.repository.SensorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -28,5 +31,13 @@ public class SensorService {
     }
 
     return sensorRepository.save(sensorMapper.toEntity(sensor));
+  }
+
+  public List<SensorResponseDto> findAllSensors() {
+    log.debug("findAllSensors");
+
+    return sensorRepository.findAll().stream()
+        .map(sensorMapper::toResponseDto)
+        .toList();
   }
 }
