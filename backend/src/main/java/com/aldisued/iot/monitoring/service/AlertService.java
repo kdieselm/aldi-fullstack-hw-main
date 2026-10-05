@@ -1,6 +1,7 @@
 package com.aldisued.iot.monitoring.service;
 
 import com.aldisued.iot.monitoring.dto.AlertDto;
+import com.aldisued.iot.monitoring.dto.AlertResponseDto;
 import com.aldisued.iot.monitoring.entity.Alert;
 import com.aldisued.iot.monitoring.entity.Sensor;
 import com.aldisued.iot.monitoring.mapper.AlertMapper;
@@ -12,6 +13,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -59,6 +61,15 @@ public class AlertService {
         .orElseThrow(() -> new EntityNotFoundException("Alert not found for sensor with id: " + sensorId));
 
     return alertMapper.toDto(lastAlert);
+  }
+
+  @Transactional(readOnly = true)
+  public List<AlertResponseDto> findAllAlerts() {
+    log.debug("findAllAlerts");
+
+    return alertRepository.findAllByOrderByTimestampDesc().stream()
+        .map(alertMapper::toResponseDto)
+        .toList();
   }
 
   private Sensor getSensorById(UUID sensorId) {
