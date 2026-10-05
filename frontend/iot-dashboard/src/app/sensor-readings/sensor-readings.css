@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  padding: 1px;
+  font-family: sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  gap: 10px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  color: #f00;
+  margin: 0;
+}
+
+.success {
+  color: #0f0;
+}

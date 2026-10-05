@@ -1,0 +1,47 @@
+<h1>Add sensor reading</h1>
+
+@if (sensorsError()) {
+  <p class="error">Could not load sensors.</p>
+}
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>
+    <b>Sensor</b>
+    <select formControlName="sensorId">
+      <option value="" disabled>Select a sensor</option>
+      @for (sensor of sensors(); track sensor.id) {
+        <option [value]="sensor.id">{{ sensor.name }} ({{ sensor.type }})</option>
+      }
+    </select>
+  </label>
+  @if (showRequired('sensorId')) {
+    <p class="error">Sensor is required.</p>
+  }
+
+  <label>
+    <b>Value</b>
+    <input type="number" step="any" formControlName="value" />
+  </label>
+  @if (showRequired('value')) {
+    <p class="error">Value is required.</p>
+  }
+
+  <label>
+    <b>Timestamp</b>
+    <input type="datetime-local" formControlName="timestamp" />
+  </label>
+  @if (showRequired('timestamp')) {
+    <p class="error">Timestamp is required.</p>
+  }
+
+  <button type="submit" [disabled]="submitting()">
+    {{ submitting() ? 'Saving...' : 'Save sensor reading' }}
+  </button>
+</form>
+
+@if (successMessage()) {
+  <p class="success">{{ successMessage() }}</p>
+}
+@if (errorMessage()) {
+  <p class="error">{{ errorMessage() }}</p>
+}
