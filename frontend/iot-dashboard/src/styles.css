@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  font-family: sans-serif;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}

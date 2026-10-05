@@ -1,6 +1,10 @@
+.table-wrapper {
+  max-width: 600px;
+  overflow-x: auto;
+}
+
 table {
   width: 100%;
-  max-width: 600px;
 }
 
 th {
