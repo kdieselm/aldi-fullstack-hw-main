@@ -1,6 +1,6 @@
 <h1>Add sensor reading</h1>
 
-@if (sensorsError()) {
+@if (sensorStore.error()) {
   <p class="error">Could not load sensors.</p>
 }
 
@@ -9,7 +9,7 @@
     <b>Sensor</b>
     <select formControlName="sensorId">
       <option value="" disabled>Select a sensor</option>
-      @for (sensor of sensors(); track sensor.id) {
+      @for (sensor of sensorStore.sensors(); track sensor.id) {
         <option [value]="sensor.id">{{ sensor.name }} ({{ sensor.type }})</option>
       }
     </select>

@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>Sensor</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (alert of alerts(); track alert.id) {
+      <tr>
+        <td>{{ alert.message }}</td>
+        <td>{{ sensorName(alert.sensorId) }}</td>
+        <td>{{ alert.timestamp | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="3">No alerts found.</td>
+      </tr>
+    }
+  </tbody>
+</table>

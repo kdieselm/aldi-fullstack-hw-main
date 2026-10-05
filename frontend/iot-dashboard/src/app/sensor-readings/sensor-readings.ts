@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Sensor } from '../sensors/sensor';
-import { SensorService } from '../sensors/sensor.service';
+import { SensorStore } from '../sensors/sensor.store';
 import { SensorReadingService } from './sensor-reading.service';
 
 @Component({
@@ -11,12 +10,10 @@ import { SensorReadingService } from './sensor-reading.service';
   styleUrl: './sensor-readings.css',
 })
 export class SensorReadings {
-  private readonly sensorService = inject(SensorService);
+  protected readonly sensorStore = inject(SensorStore);
   private readonly sensorReadingService = inject(SensorReadingService);
   private readonly formBuilder = inject(FormBuilder);
 
-  protected readonly sensors = signal<Sensor[]>([]);
-  protected readonly sensorsError = signal(false);
   protected readonly submitting = signal(false);
   protected readonly successMessage = signal('');
   protected readonly errorMessage = signal('');
@@ -28,10 +25,7 @@ export class SensorReadings {
   });
 
   constructor() {
-    this.sensorService.getSensors().subscribe({
-      next: (sensors) => this.sensors.set(sensors),
-      error: () => this.sensorsError.set(true),
-    });
+    this.sensorStore.load();
   }
 
   protected submit(): void {

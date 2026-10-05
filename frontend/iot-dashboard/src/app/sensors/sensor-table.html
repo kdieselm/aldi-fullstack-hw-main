@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (sensor of sensors(); track sensor.id) {
+      <tr>
+        <td>{{ sensor.name }}</td>
+        <td>{{ sensor.type }}</td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="2">No sensors found.</td>
+      </tr>
+    }
+  </tbody>
+</table>
