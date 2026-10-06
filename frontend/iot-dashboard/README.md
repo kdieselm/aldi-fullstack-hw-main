@@ -10,8 +10,8 @@ A small Angular 22 dashboard for the IoT monitoring backend. It has three pages:
 
 ### Prerequisites
 
-- Node.js + npm (the project pins `npm@11`)
-- Java 21
+- Node.js 26 or newer + npm (the project pins `npm@11`)
+- JDK 21, with `JAVA_HOME` pointing to it (`mvnw` uses `JAVA_HOME`)
 - Docker (for PostgreSQL and Kafka)
 
 All commands below are relative to this folder (`frontend/iot-dashboard`).

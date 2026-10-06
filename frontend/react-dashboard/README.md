@@ -10,8 +10,8 @@ A small React 19 + TypeScript + Vite dashboard for the IoT monitoring backend. I
 
 ### Prerequisites
 
-- Node.js + npm
-- Java 21
+- Node.js 26 or newer + npm
+- JDK 21, with `JAVA_HOME` pointing to it (`mvnw` uses `JAVA_HOME`)
 - Docker (for PostgreSQL and Kafka)
 
 All commands below are relative to this folder (`frontend/react-dashboard`).
