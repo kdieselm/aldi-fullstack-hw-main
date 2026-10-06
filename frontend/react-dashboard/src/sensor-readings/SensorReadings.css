@@ -1,0 +1,20 @@
+.sensor-readings form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  gap: 10px;
+}
+
+.sensor-readings label {
+  display: flex;
+  flex-direction: column;
+}
+
+.sensor-readings .error {
+  color: #f00;
+  margin: 0;
+}
+
+.sensor-readings .success {
+  color: #080;
+}

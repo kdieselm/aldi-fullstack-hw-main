@@ -1,26 +1,8 @@
-import { useEffect, useState } from 'react'
-import type { Sensor } from './sensor.ts'
-import { getSensors } from './sensorApi.ts'
 import './Sensors.css'
+import { useSensors } from './useSensors.ts'
 
 function Sensors() {
-  const [sensors, setSensors] = useState<Sensor[]>([])
-  const [error, setError] = useState(false)
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    getSensors(controller.signal)
-      .then(setSensors)
-      .catch((err) => {
-        if (!controller.signal.aborted) {
-          console.error(err)
-          setError(true)
-        }
-      })
-
-    return () => controller.abort()
-  }, [])
+  const { sensors, error } = useSensors()
 
   return (
     <div className="sensors">
