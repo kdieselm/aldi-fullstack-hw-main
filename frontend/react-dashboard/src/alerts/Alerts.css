@@ -1,0 +1,24 @@
+.alerts .table-wrapper {
+  max-width: 800px;
+  overflow-x: auto;
+}
+
+.alerts table {
+  width: 100%;
+}
+
+.alerts th {
+  background: #f0f0f0;
+}
+
+.alerts td {
+  overflow-wrap: anywhere;
+}
+
+.alerts td.timestamp {
+  white-space: nowrap;
+}
+
+.alerts .error {
+  color: #f00;
+}
