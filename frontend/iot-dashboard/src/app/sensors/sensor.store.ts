@@ -9,7 +9,6 @@ export class SensorStore {
   private readonly sensorsState = signal<Sensor[]>([]);
   private readonly loadingState = signal(false);
   private readonly errorState = signal(false);
-  private loaded = false;
 
   readonly sensors = this.sensorsState.asReadonly();
   readonly loading = this.loadingState.asReadonly();
@@ -19,17 +18,12 @@ export class SensorStore {
   );
 
   load(): void {
-    if (this.loaded || this.loadingState()) {
-      return;
-    }
-
-    this.loadingState.set(true);
-    this.errorState.set(false);
+    this.loadingState.set(this.sensorsState().length === 0);
 
     this.sensorService.getSensors().subscribe({
       next: (sensors) => {
         this.sensorsState.set(sensors);
-        this.loaded = true;
+        this.errorState.set(false);
         this.loadingState.set(false);
       },
       error: () => {

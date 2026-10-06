@@ -22,7 +22,7 @@ export class AlertStore {
   readonly error = this.errorState.asReadonly();
 
   startPolling(): Subscription {
-    this.loadingState.set(true);
+    this.loadingState.set(this.alertsState().length === 0);
 
     return timer(0, POLL_INTERVAL_MS)
       .pipe(

@@ -1,11 +1,9 @@
 <h1>Alerts</h1>
 
-@if (alertStore.error()) {
-  <p class="error">Could not load alerts. Retrying...</p>
-}
-
 @if (alertStore.loading()) {
   <p>Loading alerts...</p>
+} @else if (alertStore.error()) {
+  <p class="error">Could not load alerts. Retrying...</p>
 } @else {
   <app-alert-table [alerts]="alertStore.alerts()" [sensorNames]="sensorStore.sensorNames()" />
 }
