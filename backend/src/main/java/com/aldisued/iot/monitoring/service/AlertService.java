@@ -43,7 +43,7 @@ public class AlertService {
     Alert alert = alertMapper.toEntity(alertDto);
     alert.setSensor(sensor);
 
-    // saveAndFlush before publishing, so Kafka message is not sent if a DB related error occurs.
+    // saveAndFlush runs the INSERT first, so invalid data fails before the Kafka message is sent.
     Alert savedAlert = alertRepository.saveAndFlush(alert);
     kafkaTemplate.send(ALERTS_TOPIC, alertDto);
 

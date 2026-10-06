@@ -34,6 +34,14 @@ The API listens on `http://localhost:8080`.
 > ```
 >
 > Valid types: `TEMPERATURE`, `HUMIDITY`, `ATMOSPHERIC_PRESSURE`.
+>
+> The backend doesn't create alerts by itself (see the assumptions below), so the Alerts page stays empty until you
+> add one. Look up a sensor ID, then post an alert for it:
+>
+> ```bash
+> curl http://localhost:8080/sensors
+> curl -X POST http://localhost:8080/alerts -H "Content-Type: application/json" -d '{"sensorId":"<sensor-id>","message":"Temperature too high","timestamp":"2026-10-06T14:30:00"}'
+> ```
 
 ### 2. Start the frontend
 
@@ -82,6 +90,9 @@ the backend endpoint, where `sensorId` is part of the request body rather than t
 
 - `GET /sensors` **and** `GET /alerts` **were added to the backend** . They return `SensorResponseDto { id, name, type }` and `AlertResponseDto { id, sensorId, message, timestamp }`.
 - `GET /sensor-readings` **does not exist** in the backend. The dashboard doesn't need it, so it isn't mocked.
+- **Alerts are created elsewhere.** `frontend/TASK.md` says alerts are raised automatically when a reading is out of
+  range, but the backend has no such rule. I assume an upstream system creates them through `POST /alerts` or the
+  `sensor-alerts` Kafka topic. The dashboard only reads them through `GET /alerts`.
 - **Error responses look like** `{ "errors": "..." }` (from `GlobalExceptionHandler`). The form shows this message, and falls back to a generic message when it's missing.
 
 ## Scaling to high-frequency sensor data
