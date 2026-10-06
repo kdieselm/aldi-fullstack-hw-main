@@ -4,6 +4,7 @@ import { getSensors } from './sensorApi.ts'
 
 export function useSensors() {
   const [sensors, setSensors] = useState<Sensor[]>([])
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
   useEffect(() => {
@@ -17,9 +18,14 @@ export function useSensors() {
           setError(true)
         }
       })
+      .finally(() => {
+        if (!controller.signal.aborted) {
+          setLoading(false)
+        }
+      })
 
     return () => controller.abort()
   }, [])
 
-  return { sensors, error }
+  return { sensors, loading, error }
 }
