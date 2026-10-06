@@ -1,7 +1,19 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 16px;
   font-family: sans-serif;
+}
+
+input,
+select,
+button {
+  font: inherit;
 }
 
 nav {
@@ -10,4 +22,35 @@ nav {
   gap: 8px 16px;
   padding-bottom: 8px;
   border-bottom: 1px solid #ddd;
+}
+
+/* Narrow screens scroll the table sideways instead of stretching the whole page */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  background: #f0f0f0;
+}
+
+.error {
+  color: #f00;
+}
+
+.success {
+  color: #080;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
 }

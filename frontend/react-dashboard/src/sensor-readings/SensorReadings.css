@@ -10,11 +10,6 @@
   flex-direction: column;
 }
 
-.sensor-readings .error {
-  color: #f00;
+.sensor-readings form .error {
   margin: 0;
-}
-
-.sensor-readings .success {
-  color: #080;
 }

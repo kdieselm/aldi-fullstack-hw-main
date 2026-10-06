@@ -10,5 +10,8 @@ Read the task file for the part you're working on first; it explains the
 setup steps, requirements, and how your work will be verified (e.g. which
 test classes to run).
 
-For how to run the dashboard, design decisions and backend API assumptions, see
-[`frontend/iot-dashboard/README.md`](frontend/iot-dashboard/README.md).
+The dashboard is implemented twice, once in Angular and once in React. For how to run
+each one, design decisions and backend API assumptions, see:
+
+- **Angular:** [`frontend/iot-dashboard/README.md`](frontend/iot-dashboard/README.md)
+- **React:** [`frontend/react-dashboard/README.md`](frontend/react-dashboard/README.md)

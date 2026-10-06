@@ -1,12 +1,3 @@
-.sensors table {
-  width: 100%;
+.sensors .table-wrapper {
   max-width: 600px;
-}
-
-.sensors th {
-  background: #f0f0f0;
-}
-
-.sensors .error {
-  color: #f00;
 }

@@ -6,28 +6,30 @@ interface SensorTableProps {
 
 function SensorTable({ sensors }: SensorTableProps) {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        {sensors.length > 0 ? (
-          sensors.map((sensor) => (
-            <tr key={sensor.id}>
-              <td>{sensor.name}</td>
-              <td>{sensor.type}</td>
-            </tr>
-          ))
-        ) : (
+    <div className="table-wrapper">
+      <table>
+        <thead>
           <tr>
-            <td colSpan={2}>No sensors found.</td>
+            <th>Name</th>
+            <th>Type</th>
           </tr>
-        )}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {sensors.length > 0 ? (
+            sensors.map((sensor) => (
+              <tr key={sensor.id}>
+                <td>{sensor.name}</td>
+                <td>{sensor.type}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={2}>No sensors found.</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
